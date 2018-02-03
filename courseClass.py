@@ -1,33 +1,35 @@
 class course:
-	def __init__(self, courseCode: int, classType: str, units: int, instructor: str, time: str, final: str):
+	def __init__(self, courseCode: int, courseType: str, instructor: str, time: str, place: str, final: str):
 		self.courseCode = courseCode
-		self.classType = classType
-		self.units = units
+		self.courseType = courseType
 		self.instructor = instructor
 		self.time = getTimes(time)
+		self.place = place
 		self.final = final
 
 	def splitTimes(timeList: list):
 		'''Takes a list with [startTime, endTime] and breaks it into a list of 20 minute intervals between those times'''
-		startTime = timeList[0]
-		if 'p' in timeList[1]:
-			endTime = timeList[1].replace('p', '')
-			endPM = True
-			startPM = True
-			if int(timeList[0].split(':')[0]) < 12:
-				startPM = False
-		else:
-			endTime = timeList[1]
-			endPM = False
-			startPM = False
-
-		timeIntervals = []
 		
-		while startTime != endTime:
-			tempMinutes = startTime.split(':')[1]
-			if tempMinutes == '00':
-				
-			timeIntervals.append()
+
+
+		# startTime = timeList[0]
+		# if 'p' in timeList[1]:
+		# 	endTime = timeList[1].replace('p', '')
+		# 	endPM = True
+		# 	startPM = True
+		# 	if int(timeList[0].split(':')[0]) < 12:
+		# 		startPM = False
+		# else:
+		# 	endTime = timeList[1]
+		# 	endPM = False
+		# 	startPM = False
+
+		# timeIntervals = []
+
+		# while startTime != endTime:
+		# 	tempMinutes = startTime.split(':')[1]
+		# 	if tempMinutes == '00':
+		# 		timeIntervals.append((startTime))
 
 
 

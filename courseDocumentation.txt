@@ -3,7 +3,7 @@ class Course:
 	courseCode: int (unique course number used to sign up for class on webreg)
 	courseType: str (Lec, Dis, Lab)
 	instructor: str
-	time: dict (   {weekday: (startTime, endTime)}   )
+	time: dict (Times are stored in 24hr like this: {weekday: (startTime, endTime)}   ) 
 	place: str
 	final: str
 
