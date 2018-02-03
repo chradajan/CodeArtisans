@@ -1,37 +1,43 @@
-from selenium import webdriver
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-import lxml
+#from selenium import webdriver
+# from urllib.request import urlopen
+# from bs4 import BeautifulSoup
+# import lxml
+import requests
+import urllib
+import bs4 import BeautifulSoup
 
-URL = "https://www.reg.uci.edu/perl/WebSoc?YearTerm=2018-03&ShowFinals=1&ShowComments=1&CoCourse=16040"
+URL = "https://www.reg.uci.edu/perl/WebSoc"
 
 def scrape(department, courseCode):
-	# content = urlopen(URL).read()
-	# soup = BeautifulSoup(content, "lxml")
+	
 
-	# for paragraph in soup.head:
-	# 	print(paragraph)
-	# 	print('\n')
+# 	# content = urlopen(URL).read()
+# 	# soup = BeautifulSoup(content, "lxml")
 
-	driver = webdriver.Chrome()
+# 	# for paragraph in soup.head:
+# 	# 	print(paragraph)
+# 	# 	print('\n')
 
-	driver.get("https://www.reg.uci.edu/perl/WebSoc")
+# 	driver = webdriver.Chrome()
 
-	departmentField = driver.find_element_by_name("Dept")
-	departmentField.send_keys(department)
+# 	driver.get("https://www.reg.uci.edu/perl/WebSoc")
 
-	courseCodeField = driver.find_element_by_name("CourseNum")
-	courseCodeField.send_keys(courseCode)
+# 	departmentField = driver.find_element_by_name("Dept")
+# 	departmentField.send_keys(department)
 
-	displayResultButton = driver.findElement(By.xpath("//input[@name='Submit' and @value='Display Web Results']"))
-	displayResultButton.click()
+# 	courseCodeField = driver.find_element_by_name("CourseNum")
+# 	courseCodeField.send_keys(courseCode)
 
-	html = driver.page_source
+# 	displayResultButton = driver.findElement(By.xpath("//input[@name='Submit' and @value='Display Web Results']"))
+# 	displayResultButton.click()
 
-	soup = BeautifulSoup(html)
+# 	html = driver.page_source
 
-	for tag in soup.find_all('title'):
-		print(tag.text)
+# 	soup = BeautifulSoup(html)
+
+# 	for tag in soup.find_all('title'):
+# 		print(tag.text)
 
 if __name__== "__main__":
-	scrape("CSE","46")
+	scrape("CSE","46") 
+
