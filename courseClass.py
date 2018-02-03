@@ -7,3 +7,12 @@ class course:
 		self.time = getTimes(time)
 
 	def getTimes(timeString: str) -> dict:
+		days = timeString.split()[0]
+		times = ''.join(testTime.split()[1:]).split('-')
+		
+
+
+testTime = "TuTh   8:00- 9:20"
+
+testTimeValues = ''.join(testTime.split()[1:]).split('-')
+print(testTimeValues)
