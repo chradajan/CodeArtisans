@@ -1,0 +1,14 @@
+class Course:
+	"This is the class used to store co-classes, eg a discussion"
+	courseCode: int (unique course number used to sign up for class on webreg)
+	courseType: str (Lec, Dis, Lab)
+	instructor: str
+	time: dict (   {weekday: (startTime, endTime)}   )
+	place: str
+	final: str
+
+class MainCourse(Course)
+	"This is the class used to store main course, eg the lecture"
+	same variables as above
+	coCourses: list (of course objects)
+	
