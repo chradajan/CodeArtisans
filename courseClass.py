@@ -7,31 +7,22 @@ class course:
 		self.place = place
 		self.final = final
 
-	def splitTimes(timeList: list):
-		'''Takes a list with [startTime, endTime] and breaks it into a list of 20 minute intervals between those times'''
-		
-
-
-		# startTime = timeList[0]
-		# if 'p' in timeList[1]:
-		# 	endTime = timeList[1].replace('p', '')
-		# 	endPM = True
-		# 	startPM = True
-		# 	if int(timeList[0].split(':')[0]) < 12:
-		# 		startPM = False
-		# else:
-		# 	endTime = timeList[1]
-		# 	endPM = False
-		# 	startPM = False
-
-		# timeIntervals = []
-
-		# while startTime != endTime:
-		# 	tempMinutes = startTime.split(':')[1]
-		# 	if tempMinutes == '00':
-		# 		timeIntervals.append((startTime))
-
-
+	def formatTimes(timeList: list) -> tuple:
+		'''Takes a list with [startTime, endTime] and converts it to (start, end) in 24 hr format'''
+		startTime, endTime = timeList
+		if 'p' in endTime:
+			endTime = endTime.replace('p', '')
+			
+			endTimeHour = int(endTime.split(':')[0])
+			if endTimeHour != 12:
+				endTimeHour += 12
+			endTime = str(endTimeHour) + ':' + str(endTime.split(':')[1])
+			
+			startTimeHour = int(startTime.split(':')[0])
+			if startTimeHour < (endTimeHour - 12):
+				startTimeHour += 12
+			startTime = str(startTimeHour) + ':' + str(startTime.split(':')[1])
+		return (startTime, endTime)
 
 	def getTimes(timeString: str) -> dict:
 		timeDict = {}
@@ -40,9 +31,25 @@ class course:
 		if 'M' in timeString.split():
 			pass
 
+def formatTimes(timeList: list) -> tuple:
+		'''Takes a list with [startTime, endTime] and converts it to (start, end) in 24 hr format'''
+		startTime, endTime = timeList
+		if 'p' in endTime:
+			endTime = endTime.replace('p', '')
+			
+			endTimeHour = int(endTime.split(':')[0])
+			if endTimeHour != 12:
+				endTimeHour += 12
+			endTime = str(endTimeHour) + ':' + str(endTime.split(':')[1])
+			
+			startTimeHour = int(startTime.split(':')[0])
+			if startTimeHour < (endTimeHour - 12):
+				startTimeHour += 12
+			startTime = str(startTimeHour) + ':' + str(startTime.split(':')[1])
+		return (startTime, endTime)
 
 
-testTime = "TuTh   8:00- 9:20"
+testTime = "TuTh   11:00- 1:00p"
 
 testTimeValues = ''.join(testTime.split()[1:]).split('-')
-print(testTimeValues)
+print(formatTimes(testTimeValues))
