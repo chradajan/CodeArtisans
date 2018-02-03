@@ -31,23 +31,6 @@ class course:
 		if 'M' in timeString.split():
 			pass
 
-def formatTimes(timeList: list) -> tuple:
-		'''Takes a list with [startTime, endTime] and converts it to (start, end) in 24 hr format'''
-		startTime, endTime = timeList
-		if 'p' in endTime:
-			endTime = endTime.replace('p', '')
-			
-			endTimeHour = int(endTime.split(':')[0])
-			if endTimeHour != 12:
-				endTimeHour += 12
-			endTime = str(endTimeHour) + ':' + str(endTime.split(':')[1])
-			
-			startTimeHour = int(startTime.split(':')[0])
-			if startTimeHour < (endTimeHour - 12):
-				startTimeHour += 12
-			startTime = str(startTimeHour) + ':' + str(startTime.split(':')[1])
-		return (startTime, endTime)
-
 
 testTime = "TuTh   11:00- 1:00p"
 
