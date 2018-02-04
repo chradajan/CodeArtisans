@@ -50,4 +50,4 @@ class Course:
 		return timeDict
 
 	def __string__(self):
-		return 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\', '  ''), self.time, self.place)
+		return 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation: {}'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\', '  ''), self.time, self.place)
