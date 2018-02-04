@@ -25,6 +25,12 @@ class Course:
 			if startTimeHour < (endTimeHour - 12):
 				startTimeHour += 12
 			startTime = str(startTimeHour) + str(startTime.split(':')[1])
+		startTime.replace(':', '')
+		endTime.replace(':', '')
+		if len(startTime == 3):
+			startTime = "0" + startTime
+		if len(endTime == 3):
+			endTime = "0" + startTime
 		return (startTime, endTime)
 
 	def _splitTimes(self, timeString: str) -> dict:
@@ -44,8 +50,4 @@ class Course:
 		return timeDict
 
 	def __string__(self):
-		return
-
-# if __name__ == "__main__":
-# 	a = Course(1,"Cse", "hey", "MWF   3:00- 3:50p	", "x")
-# 	print(a.getTimes())
+		return 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\', '  ''), self.time, self.place)
