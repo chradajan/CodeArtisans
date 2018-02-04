@@ -4,7 +4,10 @@ from html.parser import HTMLParser
 from courseClass import Course
 from mainCourseClass import MainCourse
 import re
+from flask import flask
+app = Flask(__name__)
 
+@app.route("/courseread")
 def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
 	mainCourseList = []
 	link = "https://www.reg.uci.edu/perl/WebSoc?YearTerm=2018-03&ShowFinals=1&ShowComments=0&Dept={}&CourseNum={}".format(Dept, CourseNum)
@@ -13,14 +16,18 @@ def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
 		for line in file:
 			decodedLine = line.decode()
 			if 'Bookstore' in decodedLine:
-				courseCode = 0
-				courseType = instructor = time = place = ""
+				courseCode = units = 0
+				courseType = courseType = courseSection = instructor = time = place = ""
+
 				match = re.search('\d\d\d\d\d', decodedLine)
 				if match:
 					courseNumber = match.group()
-					print(courseNumber)
-				
+
+				match = re.search('Lec|Dis|Lab', decodedLine)
+				if match:
+					courseType = match.group()
+				print(courseNumber + "  " + courseType)
 
 
 if __name__ == '__main__':
-	CourseReader('CSE', '46')
+	CourseReader('CSE', '31L')
