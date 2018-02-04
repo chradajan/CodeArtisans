@@ -1,7 +1,8 @@
 class Course:
-	def __init__(self, courseCode: int, courseType: str, instructor: str, time: str, place: str):
+	def __init__(self, courseCode: int, courseType: str, courseSection: str, instructor: str, time: str, place: str):
 		self.courseCode = courseCode
 		self.courseType = courseType
+		self.courseSection = courseSection
 		self.instructor = instructor
 		self.time = self._splitTimes(time)
 		self.place = place

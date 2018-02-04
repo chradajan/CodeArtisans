@@ -11,12 +11,16 @@ def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
 	WebSocHTML = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
 	with urlopen(WebSocHTML) as file:
 		for line in file:
-			if 'Bookstore' in line:
+			decodedLine = line.decode()
+			if 'Bookstore' in decodedLine:
 				courseCode = 0
-				courseType, instructor, time, place = ""
-				courseCode = int(re.split('\d\d\d\d\d', line)[0])
-				print(courseCode)
+				courseType = instructor = time = place = ""
+				match = re.search('\d\d\d\d\d', decodedLine)
+				if match:
+					courseNumber = match.group()
+					print(courseNumber)
+				
 
 
 if __name__ == '__main__':
-	CourseReader('MATH', '3D')
+	CourseReader('CSE', '46')
