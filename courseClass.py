@@ -30,7 +30,7 @@ class Course:
 		if len(startTime) == 3:
 			startTime = "0" + startTime
 		if len(endTime) == 3:
-			endTime = "0" + startTime
+			endTime = "0" + endTime
 		return (startTime, endTime)
 
 	def _splitTimes(self, timeString: str) -> dict:

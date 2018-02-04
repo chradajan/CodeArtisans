@@ -11,6 +11,7 @@ import re
 def CourseReader(Dept: str, CourseNum: str) -> []:
 	mainCourseList = []
 	link = "https://www.reg.uci.edu/perl/WebSoc?YearTerm=2018-03&ShowFinals=1&ShowComments=0&Dept={}&CourseNum={}".format(Dept, CourseNum)
+	link = link.replace(' ', '%20')
 	WebSocHTML = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
 	with urlopen(WebSocHTML) as file:
 		for line in file:
