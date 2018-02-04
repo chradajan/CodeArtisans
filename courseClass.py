@@ -43,6 +43,9 @@ class Course:
 			timeDict['F'] = timeTuple
 		return timeDict
 
+	def __string__(self):
+		return
+
 # if __name__ == "__main__":
 # 	a = Course(1,"Cse", "hey", "MWF   3:00- 3:50p	", "x")
 # 	print(a.getTimes())
