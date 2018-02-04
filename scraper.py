@@ -8,7 +8,7 @@ import re
 #app = Flask(__name__)
 
 #@app.route("/courseread")
-def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
+def CourseReader(Dept: str, CourseNum: str) -> []:
 	mainCourseList = []
 	link = "https://www.reg.uci.edu/perl/WebSoc?YearTerm=2018-03&ShowFinals=1&ShowComments=0&Dept={}&CourseNum={}".format(Dept, CourseNum)
 	WebSocHTML = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
@@ -19,7 +19,7 @@ def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
 				courseCode = units = 0
 				courseType = courseType = courseSection = instructor = time = place = final = ""
 
-				#Parse course number
+				#Parse course code
 				match = re.search('\d\d\d\d\d', decodedLine)
 				if match:
 					courseCode = int(match.group())
@@ -61,12 +61,16 @@ def CourseReader(Dept: str, CourseNum: str):# -> [MainCourse]
 				elif units > 0:
 					final = 'TBA'
 
+				print('{:5}  {:3}  {:2}  {:1}  {:20}  {:17}  {:10}  {}'.format(courseCode, courseType, courseSection, units, instructor, time, place, final))
+
 				if units > 0:
-					mainCourseList.append()
+					mainCourseList.append(MainCourse(courseCode, courseType, courseSection, instructor, time, place, final))
+				elif units == 0:
+					mainCourseList[-1].addCoCourse(Course(courseCode, courseType, courseSection, instructor, time, place))
 				
 
-				#print('{:5}  {:3}  {:2}  {:1}  {:20}  {:17}  {:10}  {}'.format(courseCode, courseType, courseSection, units, instructor, time, place, final))
+		return mainCourseList
 
 
 if __name__ == '__main__':
-	CourseReader('Physics', '7C')
+	testCourseList = CourseReader('MATH', '3D')
