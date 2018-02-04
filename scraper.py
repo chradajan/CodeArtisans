@@ -70,7 +70,3 @@ def CourseReader(Dept: str, CourseNum: str) -> []:
 				
 
 		return mainCourseList
-
-
-if __name__ == '__main__':
-	testCourseList = CourseReader('MATH', '3D')
