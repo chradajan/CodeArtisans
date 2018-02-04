@@ -25,11 +25,11 @@ class Course:
 			if startTimeHour < (endTimeHour - 12):
 				startTimeHour += 12
 			startTime = str(startTimeHour) + str(startTime.split(':')[1])
-		startTime.replace(':', '')
-		endTime.replace(':', '')
-		if len(startTime == 3):
+		startTime = startTime.replace(':', '')
+		endTime = endTime.replace(':', '')
+		if len(startTime) == 3:
 			startTime = "0" + startTime
-		if len(endTime == 3):
+		if len(endTime) == 3:
 			endTime = "0" + startTime
 		return (startTime, endTime)
 
@@ -49,5 +49,5 @@ class Course:
 			timeDict['F'] = timeTuple
 		return timeDict
 
-	def __string__(self):
-		return 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation: {}'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\', '  ''), self.time, self.place)
+	def __str__(self):
+		return 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation: {}'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\'', '  '), self.time, self.place)

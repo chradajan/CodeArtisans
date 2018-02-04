@@ -35,9 +35,14 @@ def CourseReader(Dept: str, CourseNum: str) -> []:
 					courseSection = match.groups()[0].replace('>', '').replace('<', '')
 
 				#Parse units
-				match = re.search('>\d<', decodedLine)
+				#match = re.search('>\d<', decodedLine)
+				match = re.findall('>\d<', decodedLine)
 				if match:
-					units = int(match.group().replace('>', '').replace('<', ''))
+					if len(match) == 1:
+						units = int(match[0].replace('>', '').replace('<', ''))
+					else:
+						units = int(match[1].replace('>', '').replace('<', ''))
+					#units = int(match.group().replace('>', '').replace('<', ''))
 
 				#Parse instructor
 				match = re.findall('>((?:\w+(?: ?\w+)?, \w+.)|(?:STAFF))<', decodedLine)
@@ -61,12 +66,15 @@ def CourseReader(Dept: str, CourseNum: str) -> []:
 				elif units > 0:
 					final = 'TBA'
 
-				print('{:5}  {:3}  {:2}  {:1}  {:20}  {:17}  {:10}  {}'.format(courseCode, courseType, courseSection, units, instructor, time, place, final))
-
 				if units > 0:
 					mainCourseList.append(MainCourse(courseCode, courseType, courseSection, instructor, time, place, final))
 				elif units == 0:
 					mainCourseList[-1].addCoCourse(Course(courseCode, courseType, courseSection, instructor, time, place))
+
+				#print('{:5}  {:3}  {:2}  {:1}  {:20}  {:17}  {:10}  {}'.format(courseCode, courseType, courseSection, units, instructor, time, place, final))
 				
 
 		return mainCourseList
+
+if __name__ == '__main__':
+	CourseReader('IN4MATX', '43')

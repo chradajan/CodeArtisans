@@ -12,10 +12,10 @@ class MainCourse(Course):
 	def getCoCourses(self):
 		return self.coCourses
 
-	def __string__(self):
-		bigString = 'Course Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation: {}\nFinal: {}'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\', '  ''), self.time, self.place, self.final)
-		bigString += '\nCo-Courses:\n\n'
+	def __str__(self):
+		bigString = '\nMain Course:\nCourse Code: {}\nCourse Type: {}\nCourse Section: {}\nInstructor: {}\nTime: {}\nLocation: {}\nFinal: {}'.format(self.courseCode, self.courseType, self.courseSection, self.instructor.replace('\n\'', '  '), self.time, self.place, self.final)
+		bigString += '\n\nCo-Courses:\n\n'
 		for i in self.coCourses:
-			bigString += i
+			bigString += str(i)
 			bigString += '\n\n'
 		return bigString
