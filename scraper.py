@@ -75,6 +75,3 @@ def CourseReader(Dept: str, CourseNum: str) -> []:
 				
 
 		return mainCourseList
-
-if __name__ == '__main__':
-	CourseReader('IN4MATX', '43')
